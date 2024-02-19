@@ -1,23 +1,13 @@
-
-setwd("/data/01.singlecell_vaccine")
 setwd("/data/01.singlecell_vaccine/07.newbin")
-
 
 library(Seurat)
 library(ggplot2)
-
 IAV <- readRDS(file = "/data/01.singlecell_vaccine/05.rds.files/81libs_rmdoublet_merge_v5.rds")
 
-#先统计输出，再画boxplot:不需要，信息都在metadata里面
-#meta.data<-IAV@meta.data
-#write.table(meta.data,file = "IAV.meta.data.txt",quote = F,sep = "\t",row.names = F)
-
-
-############手动注释#####################################
+###################手动注释#####################################
 ###################使用自定义的marker###################################
 
 IAV_new<-IAV
-
 #IAV_new <- SCTransform(IAV_new, vars.to.regress = "percent.mt", verbose = FALSE)
 IAV_new <- RunPCA(IAV_new,features = gene1, verbose = FALSE)
 IAV_new <- RunUMAP(IAV_new, dims = 1:20, verbose = FALSE)##测试过了dim为1：25，效果不好。
@@ -25,8 +15,8 @@ IAV_new <- FindNeighbors(IAV_new, dims = 1:20, verbose = FALSE)
 IAV_new <- FindClusters(IAV_new, verbose = FALSE)
 DimPlot(IAV_new, label = TRUE) + NoLegend()
 
-##############为了画doHeatmap加入的代码##################
-######https://zhuanlan.zhihu.com/p/574125880
+#################为了画doHeatmap加入的代码#######################
+########https://zhuanlan.zhihu.com/p/574125880####################
 IAV_new <- NormalizeData(IAV_new)
 IAV_new <- FindVariableFeatures(IAV_new)
 IAV_new <- ScaleData(IAV_new,verbose = FALSE,features = rownames(IAV_new),
@@ -36,7 +26,6 @@ DoHeatmap(IAV_new,features = gene1,group.by="self_cluster",
           cells = 1:5000) #####2023年10月28，FigS1使用。
 
 ##+scale_fill_gradientn(colors=c("gold2","white","coral1"))
-
 
 ##############################################################
 
