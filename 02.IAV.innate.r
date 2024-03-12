@@ -140,7 +140,7 @@ cbind(IAV_SampleCell_number,Innate_SampleCell_number)
 library(reshape2)
 library(tidyverse)
 library(dplyr)
-detach('package:plyr') ####太好了，果然是包冲突了导致dplyr没有起作用
+detach('package:plyr') ####包冲突了导致dplyr没有起作用
 
 Innate_metadata<-Innate_plot@meta.data
 Innate_metadata <- Innate_metadata %>% group_by(Sample_ID)  %>% mutate(Sample_Sum = sum(nCount_SCT))
@@ -374,7 +374,7 @@ VlnPlot(Innate_NK, features = "JUN",group.by = "Sample_ID",
         split.by = "Immune_Response",slot = "data")
 
 library(dplyr)
-detach('package:plyr') ####太好了，果然是包冲突了导致dplyr没有起作用
+detach('package:plyr') ####包冲突了导致dplyr没有起作用
 Innate_NK_metadata<-Innate_NK@meta.data
 Innate_NK_metadata <- Innate_NK_metadata %>% group_by(Sample_ID)  %>% mutate(Sample_Sum = sum(nCount_SCT))
 Innate_NK_metadata <- Innate_NK_metadata %>% group_by(Sample_ID)  %>% mutate(Sample_Mean = mean(nCount_SCT))
@@ -392,7 +392,7 @@ write.table(Innate_NK_metadata_select,
             file = "Innate_NK_metadata_select.txt",
             quote = F,sep = "\t",
             row.names = T)
-######################以上方法都不好，下面这个好#############
+######################展示差异基因#############
 
 NK_DGE<-c("IL32",
           "GZMH",
