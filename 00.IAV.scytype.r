@@ -265,7 +265,7 @@ obj_low_2 <- findmarkergene(object = obj_low,species = "Human",marker = cellmatc
 
 obj_low_2 <- findcelltype(obj_low_2)
 
-###################总而言之，效果不好，一个一个看，一个一个自己注释###############################
+###################总而言之，效果不好###############################
 
 obj.sample <- SplitObject(IAV, split.by = "SampleID")
 IAV.20S6575985<-obj.sample$'20S6575985'
