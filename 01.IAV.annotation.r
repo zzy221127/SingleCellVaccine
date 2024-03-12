@@ -526,7 +526,7 @@ DotPlot(IAV, features = unique(gene1),
 library(reshape2)
 library(tidyverse)
 library(dplyr)
-detach('package:plyr') ####太好了，果然是包冲突了导致dplyr没有起作用
+detach('package:plyr') ####包冲突了导致dplyr没有起作用
 
 IAV_metadata<-IAV@meta.data
 IAV_metadata <- IAV_metadata %>% group_by(Sample_ID)  %>% mutate(Sample_Sum = sum(nCount_SCT))
@@ -684,7 +684,7 @@ DotPlot(IAV, features = unique(gene1),
 library(reshape2)
 library(tidyverse)
 library(dplyr)
-detach('package:plyr') ####太好了，果然是包冲突了导致dplyr没有起作用
+detach('package:plyr') ####包冲突了导致dplyr没有起作用
 
 IAV_metadata<-IAV@meta.data
 IAV_metadata <- IAV_metadata %>% group_by(Sample_ID)  %>% mutate(Sample_Sum = sum(nCount_SCT))
