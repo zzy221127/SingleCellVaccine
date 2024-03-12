@@ -234,7 +234,7 @@ cbind(IAV_SampleCell_number,Bcells_SampleCell_number)
 library(reshape2)
 library(tidyverse)
 library(dplyr)
-detach('package:plyr') ####太好了，果然是包冲突了导致dplyr没有起作用
+detach('package:plyr') ####包冲突了导致dplyr没有起作用
 
 Bcells_metadata<-Bcells_plot@meta.data
 Bcells_metadata <- Bcells_metadata %>% group_by(Sample_ID)  %>% mutate(Sample_Sum = sum(nCount_SCT))
@@ -438,12 +438,12 @@ write.table(Regulatory_B_NormalHigh_marker,
 #Bcells_new2 <- NormalizeData(Bcells_new)  ###试过了，不用normalize就是还是分层
 #all.features <- rownames(Bcells_new2)
 #Bcells_new2 <- ScaleData(Bcells_new2, features = all.features)
-#VlnPlot(Bcells_new2, features = "CD19",slot = "scale.data")  ###额，也不好看,data,counts都不行，看下别人脚本？
+#VlnPlot(Bcells_new2, features = "CD19",slot = "scale.data")  ###额，也不好看,data,counts都不行
 
 #VlnPlot(Bcells_new2, cols = NULL, features = "CD19", pt.size = 0, 
 #                  group.by = "self_cluster") +
 #  geom_boxplot(width=.05,col="black",fill="white",outlier.size =0)+ 
-#  NoLegend() #############所以是脚本问题？这样看起来还行，也仅仅是还行而已。
+#  NoLegend() #############这样看起来还行，也仅仅是还行而已。
 
 
 
