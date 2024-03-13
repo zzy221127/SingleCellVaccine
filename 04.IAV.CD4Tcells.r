@@ -19,8 +19,6 @@ CD8T<-subset(Tcells, subset = CD8B > 1)
 ##说明实际上有很多即不表达CD4也不表达CD8的。###生信技能树的博客已经说明了，即使是示范的例子也是如此。
 #CD4T<-SCTransform(CD4T, vars.to.regress = "percent.mt", verbose = FALSE) 
 
-#果然CD8比CD4多很多，与预期不符合，是不是很多文章都常见？查一下。
-
 Tcell_genes = c(
   "PTPRC","CD3D","CD3E","CD3G","CD4","CD8A","CD8B","IFNG",
   "TNF","EOMES","CCR7","SELL","CD27","CD28","CXCR3","IL2",
@@ -28,10 +26,7 @@ Tcell_genes = c(
   "IL4","IL5","GATA3","CCR3","CCR6","SPI1","IL17A","CCR10",
   "IL22","FOXP3","IL2RA","IL7R","CTLA4","TGFB1","IL10",
   "STAT5A","STAT5B","CXCR5","CD40LG","ICOS","IL21","BCL6",
-  "IL23R","RORC","TRAV24","TRBV11-1"
-)
-
-
+  "IL23R","RORC","TRAV24","TRBV11-1")
 
 CD4_Tcell_genes = c(
   "CCR7","SELL","CD27","CD28","IFNG","LEF1","LTB","TCF7","TNF","CXCR3","IL2",
@@ -39,8 +34,7 @@ CD4_Tcell_genes = c(
   "TBX21","CCR4","IL4","IL5","GATA3","CCR3","CCR6",
   "SPI1","CCR10","FOXP3","IL2RA","IL7R","CTLA4","TGFB1","IL10",
   "STAT5A","STAT5B","CXCR5","CD40LG","ICOS","IL21",
-  "BCL6","IL23R","RORC","TRAV24"
-)
+  "BCL6","IL23R","RORC","TRAV24")
 
 CD4_Tcell_plot = c("PTPRC","CD4",
   "CCR7","SELL","CD27","CD28","IFNG","CXCR3","IL2",
@@ -139,7 +133,7 @@ cbind(IAV_SampleCell_number,CD4T_SampleCell_number)
 library(reshape2)
 library(tidyverse)
 library(dplyr)
-detach('package:plyr') ####太好了，果然是包冲突了导致dplyr没有起作用
+detach('package:plyr') ####包冲突了导致dplyr没有起作用
 
 CD4T_metadata<-CD4T_plot@meta.data
 CD4T_metadata <- CD4T_metadata %>% group_by(Sample_ID)  %>% mutate(Sample_Sum = sum(nCount_SCT))
